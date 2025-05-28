@@ -1,0 +1,73 @@
+# GitHub Pages Configuration for AgtRoute
+title: AgtRoute - ניהול מסלולי חלוקה
+description: מערכת ניהול מסלולי חלוקה שבועית מתקדמת עם אופטימיזציה ומפות אינטראקטיביות
+author: Logistic AI System
+lang: he
+url: https://gil100.github.io
+baseurl: /AgtRoute
+
+# Theme and plugins
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+# Collections and defaults
+collections_dir: assets/data
+
+# Exclude from processing
+exclude:
+  - node_modules/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENSE
+  - .gitignore
+  - .git/
+
+# Include files and directories
+include:
+  - assets/
+  - sw.js
+  - manifest.json
+  - .htaccess
+
+# Custom variables
+google_analytics: # Add your GA tracking ID here if needed
+google_maps_api_key: # Your Google Maps API key (will be set via environment)
+
+# PWA settings
+pwa:
+  enabled: true
+  cache_version: v1.0.0
+  precache_files:
+    - /
+    - /index.html
+    - /assets/css/main.css
+    - /assets/js/app.js
+
+# Security headers (via .htaccess or netlify)
+security:
+  content_security_policy: "default-src 'self'; script-src 'self' https://maps.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://maps.googleapis.com;"
+  
+# Compression and optimization
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+
+# Timezone and locale
+timezone: Asia/Jerusalem
+locale: he_IL

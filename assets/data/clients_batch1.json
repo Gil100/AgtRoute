@@ -1,0 +1,115 @@
+    {
+      "id": "client_001",
+      "name": "כלבו ווט בעמ",
+      "type": "חברה",
+      "address": "אזה\"ת קרית אתא",
+      "coordinates": {
+        "latitude": 32.809144,
+        "longitude": 35.119773
+      },
+      "contact": {
+        "phone": "04-8123456",
+        "email": "kelbo.vat@example.co.il",
+        "contactPerson": "איש קשר כלבו"
+      },
+      "cluster": "other",
+      "visitDay": "Friday",
+      "visitDuration": 15,
+      "priority": "medium",
+      "specialRequirements": "אזור תעשייה",
+      "lastVisit": "2025-05-24",
+      "status": "active",
+      "agent": "אריאל"
+    },
+    {
+      "id": "client_002",
+      "name": "חלב אחים דמתי",
+      "type": "רפת",
+      "address": "אחיהוד",
+      "coordinates": {
+        "latitude": 32.908312,
+        "longitude": 35.1723837
+      },
+      "contact": {
+        "phone": "04-9876001",
+        "email": "achim.dairy@example.co.il",
+        "contactPerson": "דמתי אחים"
+      },
+      "cluster": "ahihud",
+      "visitDay": "Tuesday",
+      "visitDuration": 15,
+      "priority": "high",
+      "specialRequirements": "MEGA CLUSTER אחיהוד",
+      "lastVisit": "2025-05-21",
+      "status": "active",
+      "agent": "אריאל"
+    },
+    {
+      "id": "client_003", 
+      "name": "מ.ר. משק גמליאל בעמ",
+      "type": "משק",
+      "address": "אחיהוד",
+      "coordinates": {
+        "latitude": 32.908312,
+        "longitude": 35.1723837
+      },
+      "contact": {
+        "phone": "04-9876002",
+        "email": "gamliel.farm@example.co.il",
+        "contactPerson": "גמליאל מ.ר."
+      },
+      "cluster": "ahihud",
+      "visitDay": "Tuesday",
+      "visitDuration": 15,
+      "priority": "high",
+      "specialRequirements": "MEGA CLUSTER אחיהוד",
+      "lastVisit": "2025-05-21",
+      "status": "active",
+      "agent": "אריאל"
+    },
+    {
+      "id": "client_004",
+      "name": "זכריה אברהם",
+      "type": "משק",
+      "address": "אחיהוד",
+      "coordinates": {
+        "latitude": 32.908312,
+        "longitude": 35.1723837
+      },
+      "contact": {
+        "phone": "04-9876003",
+        "email": "zechariah.abraham@example.co.il",
+        "contactPerson": "זכריה אברהם"
+      },
+      "cluster": "ahihud",
+      "visitDay": "Tuesday",
+      "visitDuration": 15,
+      "priority": "high",
+      "specialRequirements": "MEGA CLUSTER אחיהוד",
+      "lastVisit": "2025-05-21",
+      "status": "active",
+      "agent": "אריאל"
+    },
+    {
+      "id": "client_005",
+      "name": "חב' דמתי שלום ושות' בע'מ",
+      "type": "חברה",
+      "address": "אחיהוד",
+      "coordinates": {
+        "latitude": 32.908312,
+        "longitude": 35.1723837
+      },
+      "contact": {
+        "phone": "04-9876004",
+        "email": "damati.shalom@example.co.il",
+        "contactPerson": "דמתי שלום"
+      },
+      "cluster": "ahihud",
+      "visitDay": "Tuesday",
+      "visitDuration": 15,
+      "priority": "high",
+      "specialRequirements": "MEGA CLUSTER אחיהוד",
+      "lastVisit": "2025-05-21",
+      "status": "active",
+      "agent": "אריאל"
+    }

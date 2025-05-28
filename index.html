@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="מערכת אופטימיזציה מתקדמת לניהול 176 לקוחות ב-8 MEGA CLUSTERS עם יעילות 3.02 לקוחות/שעה">
+    <meta name="keywords" content="לוגיסטיקה, מסלולים, אופטימיזציה, MEGA CLUSTER, GPS, מפות, חלוקה, ROI">
+    <meta name="author" content="AgtRoute - Logistic AI System">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2196F3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AgtRoute">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/navigationUI.css">
+    
+    <title>AgtRoute - מערכת אופטימיזציה לוגיסטית | 176 לקוחות ב-8 MEGA CLUSTERS</title>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>טוען מערכת מסלולים...</p>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container hidden">
+        
+        <!-- Enhanced Header with Stats -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="header-main">
+                    <h1 class="app-title">
+                        <span class="icon">🚛</span>
+                        <span class="title-text">
+                            <span class="title-main">AgtRoute</span>
+                            <span class="title-sub">Logistic AI System</span>
+                        </span>
+                    </h1>
+                    
+                    <!-- Real-time Stats -->
+                    <div class="header-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="totalClients">176</span>
+                            <span class="stat-label">לקוחות</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="efficiency">3.02</span>
+                            <span class="stat-label">לקוח/שעה</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="utilization">97%</span>
+                            <span class="stat-label">ניצולת</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="header-controls">
+                    <button id="refreshBtn" class="btn-icon" title="רענן נתונים">
+                        <span>🔄</span>
+                    </button>
+                    <button id="analyticsBtn" class="btn-icon" title="דוחות וניתוחים">
+                        <span>📊</span>
+                    </button>
+                    <button id="settingsBtn" class="btn-icon" title="הגדרות מתקדמות">
+                        <span>⚙️</span>
+                    </button>
+                    <button id="helpBtn" class="btn-icon" title="עזרה ומדריך">
+                        <span>❓</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Progress Bar for Daily Routes -->
+            <div class="route-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="dailyProgress" style="width: 0%"></div>
+                </div>
+                <span class="progress-text" id="progressText">התקדמות יומית: 0/0</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            
+            <!-- Day Filter Tabs -->
+            <section class="day-filter-section">
+                <div class="day-tabs">
+                    <button class="day-tab active" data-day="1">
+                        <span class="day-name">ראשון</span>
+                        <span class="client-count" id="day1Count">30</span>
+                    </button>
+                    <button class="day-tab" data-day="2">
+                        <span class="day-name">שני</span>
+                        <span class="client-count" id="day2Count">24</span>
+                    </button>
+                    <button class="day-tab" data-day="3">
+                        <span class="day-name">שלישי</span>
+                        <span class="client-count" id="day3Count">20</span>
+                    </button>
+                    <button class="day-tab" data-day="4">
+                        <span class="day-name">רביעי</span>
+                        <span class="client-count" id="day4Count">26</span>
+                    </button>
+                    <button class="day-tab" data-day="5">
+                        <span class="day-name">חמישי</span>
+                        <span class="client-count" id="day5Count">76</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Enhanced Map Container -->
+            <section class="map-section">
+                <div class="map-wrapper">
+                    <div id="map" class="map-container"></div>
+                    
+                    <!-- Map Loading Overlay -->
+                    <div id="mapLoading" class="map-loading hidden">
+                        <div class="loading-spinner"></div>
+                        <p>טוען מפה...</p>
+                    </div>
+                    
+                    <!-- Map Controls -->
+                    <div class="map-controls">
+                        <div class="control-group">
+                            <button id="centerMapBtn" class="map-btn" title="מרכז מפה על מחסן שרונה">
+                                <span>🎯</span>
+                            </button>
+                            <button id="myLocationBtn" class="map-btn" title="המיקום שלי">
+                                <span>📍</span>
+                            </button>
+                            <button id="fullscreenBtn" class="map-btn" title="מסך מלא">
+                                <span>⛶</span>
+                            </button>
+                        </div>
+                        
+                        <div class="control-group">
+                            <button id="showTrafficBtn" class="map-btn" title="הצג עומסים">
+                                <span>🚗</span>
+                            </button>
+                            <button id="routePreviewBtn" class="map-btn" title="תצוגה מקדימה של מסלול">
+                                <span>🗺️</span>
+                            </button>
+                            <button id="clusterToggleBtn" class="map-btn active" title="הצג/הסתר MEGA CLUSTERS">
+                                <span>🔗</span>
+                            </button>
+                        </div>
+                        
+                        <div class="control-group">
+                            <button id="zoomInBtn" class="map-btn" title="הגדל">
+                                <span>➕</span>
+                            </button>
+                            <button id="zoomOutBtn" class="map-btn" title="הקטן">
+                                <span>➖</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Info Panel -->
+                    <div class="map-info-panel">
+                        <div class="info-item">
+                            <span class="info-label">מרחק כולל:</span>
+                            <span class="info-value" id="totalDistance">0 קמ</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">זמן נסיעה:</span>
+                            <span class="info-value" id="totalTime">0 שעות</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">לקוחות יום:</span>
+                            <span class="info-value" id="dailyClients">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cluster Legend -->
+                <div class="cluster-legend">
+                    <h3>MEGA CLUSTERS</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="color-dot cluster-1"></span>
+                            <span>מושב שרונה (8)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot cluster-2"></span>
+                            <span>שדה אילן (11)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot cluster-3"></span>
+                            <span>אחיהוד (9)</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="color-dot cluster-4"></span>
+                            <span>כפר יהושע (8)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Side Panel for Client Info -->
+            <aside id="clientPanel" class="client-panel hidden">
+                <div class="panel-header">
+                    <h3 id="clientName">פרטי לקוח</h3>
+                    <button id="closePanelBtn" class="btn-close">×</button>
+                </div>
+                <div class="panel-content">
+                    <div id="clientDetails" class="client-details">
+                        <!-- Client information will be populated here -->
+                    </div>
+                    <div class="panel-actions">
+                        <button id="navigateBtn" class="btn-primary">נווט ללקוח</button>
+                        <button id="markVisitedBtn" class="btn-secondary">סמן כבוקר</button>
+                    </div>
+                </div>
+            </aside>
+
+        </main>
+
+        <!-- Enhanced Bottom Navigation (Responsive) -->
+        <nav class="bottom-nav" id="bottomNav">
+            <div class="nav-wrapper">
+                <!-- Primary Navigation Items -->
+                <button class="nav-item active" data-view="map" id="navMap">
+                    <span class="nav-icon">🗺️</span>
+                    <span class="nav-label">מפה</span>
+                    <span class="nav-badge" id="mapBadge">8</span>
+                </button>
+                
+                <button class="nav-item" data-view="routes" id="navRoutes">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-label">מסלולים</span>
+                    <span class="nav-badge" id="routesBadge">5</span>
+                </button>
+                
+                <button class="nav-item" data-view="clients" id="navClients">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">לקוחות</span>
+                    <span class="nav-badge" id="clientsBadge">176</span>
+                </button>
+                
+                <button class="nav-item" data-view="progress" id="navProgress">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">התקדמות</span>
+                    <span class="nav-badge" id="progressBadge">65%</span>
+                </button>
+                
+                <!-- FAB (Floating Action Button) -->
+                <button class="nav-fab" id="navFab" title="התחל מסלול יומי">
+                    <span class="fab-icon">🚀</span>
+                    <span class="fab-text">התחל</span>
+                </button>
+                
+                <!-- Secondary Navigation (Expandable) -->
+                <button class="nav-item nav-more" data-view="more" id="navMore">
+                    <span class="nav-icon">⋯</span>
+                    <span class="nav-label">עוד</span>
+                </button>
+            </div>
+            
+            <!-- More Menu (Hidden by default) -->
+            <div class="nav-more-menu hidden" id="navMoreMenu">
+                <div class="more-menu-content">
+                    <button class="more-item" data-action="export">
+                        <span class="more-icon">📤</span>
+                        <span class="more-label">ייצוא נתונים</span>
+                        <span class="more-desc">JSON/CSV/Excel</span>
+                    </button>
+                    
+                    <button class="more-item" data-action="analytics">
+                        <span class="more-icon">📈</span>
+                        <span class="more-label">אנליטיקה</span>
+                        <span class="more-desc">דוחות מפורטים</span>
+                    </button>
+                    
+                    <button class="more-item" data-action="settings">
+                        <span class="more-icon">⚙️</span>
+                        <span class="more-label">הגדרות</span>
+                        <span class="more-desc">העדפות מערכת</span>
+                    </button>
+                    
+                    <button class="more-item" data-action="help">
+                        <span class="more-icon">❓</span>
+                        <span class="more-label">עזרה</span>
+                        <span class="more-desc">מדריך ותמיכה</span>
+                    </button>
+                    
+                    <button class="more-item" data-action="sync">
+                        <span class="more-icon">🔄</span>
+                        <span class="more-label">סנכרון</span>
+                        <span class="more-desc">רענן נתונים</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Navigation Indicator -->
+            <div class="nav-indicator" id="navIndicator"></div>
+        </nav>
+
+    </div>
+
+    <!-- Offline Indicator -->
+    <div id="offlineIndicator" class="offline-indicator hidden">
+        <span>🚫</span>
+        <span>מצב לא מקוון</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/dataManager.js"></script>
+    <script src="assets/js/mapManager.js"></script>
+    <script src="assets/js/routeManager.js"></script>
+    <script src="assets/js/googleMapsIntegration.js"></script>
+    <script src="assets/js/navigationUI.js"></script>
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Google Maps API -->
+    <script async defer 
+            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,places&callback=initApp">
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+
+</body>
+</html>

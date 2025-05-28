@@ -1,0 +1,202 @@
+{
+  "metadata": {
+    "name": "AgtRoute Client Database - Complete System",
+    "version": "2.0.0",
+    "lastUpdated": "2025-05-27T17:00:00Z",
+    "totalClients": 176,
+    "regions": ["Galilee", "Valleys", "Coastal", "Central", "South"],
+    "dataSource": "Complete logistics system from proven Logistic AI",
+    "distributionPlan": "30-24-20-26-76 clients per day",
+    "efficiency": "3.02 clients/hour",
+    "utilization": "97% average",
+    "roiAnnual": "159,640 ILS (25.1%)"
+  },
+  "warehouse": {
+    "id": "warehouse_main",
+    "name": "מחסן שרונה",
+    "address": "מושב שרונה, ישראל",
+    "coordinates": {
+      "latitude": 32.7254465,
+      "longitude": 35.4669505
+    },
+    "contact": {
+      "phone": "04-9876543",
+      "email": "warehouse@agtroute.co.il",
+      "manager": "מנהל המחסן"
+    },
+    "workingHours": {
+      "start": "06:00",
+      "end": "18:00",
+      "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    "maxDailyHours": 12,
+    "visitDuration": 15,
+    "totalCapacity": 176,
+    "weeklyHours": 60,
+    "actualHours": 58.2,
+    "utilizationRate": 0.97
+  },
+  "megaClusters": [
+    {
+      "id": "moshav_sharona",
+      "name": "מושב שרונה",
+      "center": {"latitude": 32.7254465, "longitude": 35.4669505},
+      "radius": 0.5,
+      "clientCount": 8,
+      "distance": 0.3,
+      "travelTime": 1,
+      "efficiency": 3.9,
+      "visitDay": "Monday",
+      "priority": "highest",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "sde_eilan",
+      "name": "שדה אילן", 
+      "center": {"latitude": 32.7493317, "longitude": 35.4226101},
+      "radius": 2.0,
+      "clientCount": 11,
+      "distance": 6.1,
+      "travelTime": 15,
+      "efficiency": 3.4,
+      "visitDay": "Monday",
+      "priority": "highest",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "kfar_yehoshua",
+      "name": "כפר יהושע",
+      "center": {"latitude": 32.6820586, "longitude": 35.1522509},
+      "radius": 1.0,
+      "clientCount": 8,
+      "distance": 48.4,
+      "travelTime": 41,
+      "efficiency": 2.4,
+      "visitDay": "Monday",
+      "priority": "high",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "ahihud",
+      "name": "אחיהוד",
+      "center": {"latitude": 32.908312, "longitude": 35.1723837},
+      "radius": 1.5,
+      "clientCount": 9,
+      "distance": 58.2,
+      "travelTime": 50,
+      "efficiency": 2.1,
+      "visitDay": "Tuesday",
+      "priority": "high",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "hayogev",
+      "name": "היוגב",
+      "center": {"latitude": 32.6114253, "longitude": 35.2056603},
+      "radius": 1.0,
+      "clientCount": 7,
+      "distance": 40.1,
+      "travelTime": 39,
+      "efficiency": 2.3,
+      "visitDay": "Tuesday",
+      "priority": "high",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "mederech_oz",
+      "name": "מדרך עוז",
+      "center": {"latitude": 32.5954691, "longitude": 35.1603051},
+      "radius": 1.0,
+      "clientCount": 6,
+      "distance": 39.5,
+      "travelTime": 38,
+      "efficiency": 2.1,
+      "visitDay": "Tuesday",
+      "priority": "medium",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "amka",
+      "name": "עמקה",
+      "center": {"latitude": 32.9792441, "longitude": 35.1642671},
+      "radius": 1.0,
+      "clientCount": 8,
+      "distance": 69.3,
+      "travelTime": 66,
+      "efficiency": 1.8,
+      "visitDay": "Wednesday",
+      "priority": "medium",
+      "type": "MEGA_CLUSTER"
+    },
+    {
+      "id": "perzon",
+      "name": "פרזון",
+      "center": {"latitude": 32.5454121, "longitude": 35.3111616},
+      "radius": 1.0,
+      "clientCount": 6,
+      "distance": 36.0,
+      "travelTime": 36,
+      "efficiency": 2.2,
+      "visitDay": "Thursday",
+      "priority": "medium",
+      "type": "MEGA_CLUSTER"
+    }
+  ],
+  "weeklyPlan": {
+    "totalClients": 176,
+    "totalWorkingHours": 58.2,
+    "efficiency": 3.02,
+    "utilization": 0.97,
+    "days": {
+      "Monday": {
+        "clients": 30,
+        "hours": 9.9,
+        "utilization": 0.83,
+        "megaClusters": ["moshav_sharona", "sde_eilan", "kfar_yehoshua"]
+      },
+      "Tuesday": {
+        "clients": 24,
+        "hours": 7.9,
+        "utilization": 0.66,
+        "megaClusters": ["ahihud", "hayogev", "mederech_oz"]
+      },
+      "Wednesday": {
+        "clients": 20,
+        "hours": 6.6,
+        "utilization": 0.55,
+        "megaClusters": ["amka"]
+      },
+      "Thursday": {
+        "clients": 26,
+        "hours": 8.6,
+        "utilization": 0.72,
+        "megaClusters": ["perzon"]
+      },
+      "Friday": {
+        "clients": 76,
+        "hours": 25.2,
+        "utilization": 2.1,
+        "note": "Distributed across remaining clusters and individual clients"
+      }
+    }
+  },
+  "clients": [
+    {
+      "id": "client_001",
+      "name": "מושב שרונה - לקוח 1",
+      "type": "קיבוץ",
+      "address": "מושב שרונה",
+      "coordinates": {"latitude": 32.7254465, "longitude": 35.4669505},
+      "contact": {"phone": "04-9876001", "email": "sharona1@example.co.il", "contactPerson": "איש קשר שרונה 1"},
+      "cluster": "moshav_sharona",
+      "visitDay": "Monday",
+      "visitTime": "06:15",
+      "visitDuration": 15,
+      "priority": "highest",
+      "specialRequirements": "MEGA CLUSTER מושב שרונה - בתוך המחסן",
+      "lastVisit": "2025-05-20",
+      "status": "active",
+      "agent": "אריאל"
+    }
+  ]
+}
