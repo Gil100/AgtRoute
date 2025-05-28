@@ -73,6 +73,30 @@ class RouteManager {
         this.loadRouteHistory();
     }
 
+    // DATA LOADING AND MANAGEMENT
+    async loadData(routeData) {
+        console.log('📊 Loading route data...');
+        
+        if (routeData && routeData.dailyRoutes) {
+            routeData.dailyRoutes.forEach(route => {
+                this.routes.set(`day-${route.day}`, route);
+            });
+        }
+        
+        console.log(`✅ Loaded ${this.routes.size} routes`);
+        return this.routes;
+    }
+    
+    // DATA LOADING AND MANAGEMENT
+    getData() {
+        return {
+            routes: Array.from(this.routes.entries()),
+            activeRoute: this.activeRoute,
+            megaClusters: Array.from(this.megaClusters.entries()),
+            statistics: this.getRouteStatistics()
+        };
+    }
+
     // MEGA CLUSTER IDENTIFICATION
     identifyMegaClusters() {
         if (!window.dataManager || !window.dataManager.clients) return;
