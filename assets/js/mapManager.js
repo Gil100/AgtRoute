@@ -47,32 +47,73 @@ class MapManager {
   }
   
   /**
-   * Load Google Maps API
+   * Load Google Maps API with proper configuration
    */
   async loadGoogleMapsAPI() {
     return new Promise((resolve, reject) => {
       if (window.google && window.google.maps) {
+        console.log('✅ Google Maps API already loaded');
         resolve();
         return;
       }
       
-      // Create callback function
-      window.initGoogleMaps = () => {
-        delete window.initGoogleMaps;
-        resolve();
-      };
+      // Check if loading is already in progress
+      if (window.googleMapsLoading) {
+        console.log('🔄 Google Maps API loading in progress...');
+        window.googleMapsLoading.then(resolve).catch(reject);
+        return;
+      }
       
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDummy_Key_For_Demo&libraries=geometry,places&language=he&region=IL&callback=initGoogleMaps`;
-      script.async = true;
-      script.defer = true;
+      // Create loading promise
+      window.googleMapsLoading = new Promise((res, rej) => {
+        // Get API key from config
+        const config = window.GOOGLE_MAPS_CONFIG || {
+          apiKey: 'AIzaSyBI0FlEj7JPf1ectus8HUL7BwlC1rouv1E',
+          libraries: ['geometry', 'places'],
+          language: 'he',
+          region: 'IL'
+        };
+        
+        // Validate API key
+        if (!config.apiKey || config.apiKey.includes('Dummy')) {
+          console.error('❌ Invalid Google Maps API key');
+          rej(new Error('Invalid or missing Google Maps API key'));
+          return;
+        }
+        
+        // Create callback function
+        window.initGoogleMapsCallback = () => {
+          delete window.initGoogleMapsCallback;
+          delete window.googleMapsLoading;
+          console.log('✅ Google Maps API loaded successfully');
+          res();
+        };
+        
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${config.apiKey}&libraries=${config.libraries.join(',')}&language=${config.language}&region=${config.region}&callback=initGoogleMapsCallback`;
+        script.async = true;
+        script.defer = true;
+        
+        script.onerror = () => {
+          delete window.initGoogleMapsCallback;
+          delete window.googleMapsLoading;
+          console.error('❌ Failed to load Google Maps API script');
+          rej(new Error('Failed to load Google Maps API script'));
+        };
+        
+        // Add timeout
+        setTimeout(() => {
+          if (window.initGoogleMapsCallback) {
+            delete window.initGoogleMapsCallback;
+            delete window.googleMapsLoading;
+            rej(new Error('Google Maps API loading timeout'));
+          }
+        }, 15000); // 15 seconds timeout
+        
+        document.head.appendChild(script);
+      });
       
-      script.onerror = () => {
-        delete window.initGoogleMaps;
-        reject(new Error('Failed to load Google Maps API'));
-      };
-      
-      document.head.appendChild(script);
+      window.googleMapsLoading.then(resolve).catch(reject);
     });
   }
   

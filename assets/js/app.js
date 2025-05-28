@@ -78,19 +78,68 @@ class AgtRouteApp {
   }
   
   /**
-   * Load JSON file
+   * Load JSON file with retry mechanism and fallback data
    */
-  async loadJSON(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+  async loadJSON(url, retries = 2) {
+    for (let i = 0; i <= retries; i++) {
+      try {
+        console.log(`📄 Loading ${url} (attempt ${i + 1}/${retries + 1})`);
+        const response = await fetch(url, {
+          cache: 'no-cache',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log(`✅ Successfully loaded ${url}`);
+        return data;
+        
+      } catch (error) {
+        console.error(`❌ Failed to load ${url} (attempt ${i + 1}):`, error);
+        
+        if (i === retries) {
+          // On final failure, return appropriate fallback data
+          return this.getFallbackData(url);
+        }
+        
+        // Wait before retry
+        await new Promise(resolve => setTimeout(resolve, 1000 * (i + 1)));
       }
-      return await response.json();
-    } catch (error) {
-      console.error(`Failed to load ${url}:`, error);
-      return null;
     }
+  }
+  
+  /**
+   * Get fallback data when JSON loading fails
+   */
+  getFallbackData(url) {
+    console.log(`🔄 Using fallback data for ${url}`);
+    
+    if (url.includes('clients.json')) {
+      return {
+        metadata: { totalClients: 0 },
+        clients: [],
+        megaClusters: []
+      };
+    } else if (url.includes('routes.json')) {
+      return {
+        dailyRoutes: [],
+        summary: {}
+      };
+    } else if (url.includes('clusters.json')) {
+      return {
+        clusterAnalysis: {
+          megaClusters: { clusters: [] },
+          regularClusters: { clusters: [] }
+        }
+      };
+    }
+    return {};
   }
   
   /**

@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#2563eb"/>
+  <!-- Truck body -->
+  <rect x="112" y="200" width="172" height="84" fill="white" rx="8"/>
+  <!-- Truck cab -->
+  <rect x="284" y="228" width="84" height="56" fill="white" rx="6"/>
+  <!-- Wheels -->
+  <circle cx="156" cy="316" r="22" fill="white"/>
+  <circle cx="324" cy="316" r="22" fill="white"/>
+  <!-- Route symbol -->
+  <path d="M84 112 L112 84 L140 112 M112 84 L112 140" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M372 112 L400 84 L428 112 M400 84 L400 140" stroke="white" stroke-width="8" fill="none"/>
+  <!-- Title -->
+  <text x="256" y="420" text-anchor="middle" fill="white" font-family="Arial" font-size="42" font-weight="bold">AgtRoute</text>
+</svg>

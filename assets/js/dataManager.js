@@ -65,20 +65,51 @@ class DataManager {
   }
   
   /**
-   * Load data with enhanced business logic integration
+   * Load data with enhanced business logic integration and error handling
    */
   async loadData(clientData, routeData, clusterData) {
     try {
-      // Handle different data structures
-      if (clientData?.clients) {
+      console.log('📊 Loading data...', { clientData, routeData, clusterData });
+      
+      // Validate and handle different data structures
+      if (clientData?.clients && Array.isArray(clientData.clients)) {
         this.clients = clientData.clients;
         this.megaClusters = clientData.megaClusters || [];
+        console.log('✅ Client data loaded from structured format');
+      } else if (Array.isArray(clientData)) {
+        this.clients = clientData;
+        console.log('✅ Client data loaded from array format');
+      } else if (clientData) {
+        console.warn('⚠️ Unexpected client data format:', typeof clientData);
+        this.clients = [];
       } else {
-        this.clients = clientData || [];
+        console.warn('⚠️ No client data provided');
+        this.clients = [];
       }
       
-      this.routes = routeData || [];
-      this.clusters = clusterData || [];
+      // Validate routes data
+      if (routeData?.dailyRoutes && Array.isArray(routeData.dailyRoutes)) {
+        this.routes = routeData.dailyRoutes;
+        console.log('✅ Route data loaded from structured format');
+      } else if (Array.isArray(routeData)) {
+        this.routes = routeData;
+        console.log('✅ Route data loaded from array format');
+      } else {
+        console.warn('⚠️ No valid route data, using empty array');
+        this.routes = [];
+      }
+      
+      // Validate clusters data
+      if (clusterData?.clusterAnalysis?.megaClusters?.clusters) {
+        this.clusters = clusterData.clusterAnalysis.megaClusters.clusters;
+        console.log('✅ Cluster data loaded from structured format');
+      } else if (Array.isArray(clusterData)) {
+        this.clusters = clusterData;
+        console.log('✅ Cluster data loaded from array format');
+      } else {
+        console.warn('⚠️ No valid cluster data, using empty array');
+        this.clusters = [];
+      }
       
       // Process and enrich data with business logic
       await this.processClientData();
@@ -155,6 +186,13 @@ class DataManager {
    * Process route data
    */
   processRouteData() {
+    // Make sure routes is an array before processing
+    if (!Array.isArray(this.routes)) {
+      console.warn('⚠️ Routes data is not an array, using empty array');
+      this.routes = [];
+      return;
+    }
+    
     this.routes = this.routes.map((route, index) => ({
       ...route,
       id: route.id || `route-${index}`,
@@ -168,6 +206,13 @@ class DataManager {
    * Process cluster data
    */
   processClusterData() {
+    // Make sure clusters is an array before processing
+    if (!Array.isArray(this.clusters)) {
+      console.warn('⚠️ Clusters data is not an array, using empty array');
+      this.clusters = [];
+      return;
+    }
+    
     this.clusters = this.clusters.map((cluster, index) => ({
       ...cluster,
       id: cluster.id || `cluster-${index}`,

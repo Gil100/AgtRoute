@@ -4,22 +4,24 @@ const DYNAMIC_CACHE = 'agtroute-dynamic-v1';
 
 // Files to cache for offline functionality
 const STATIC_FILES = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/assets/css/main.css',
-  '/assets/css/mobile.css',
-  '/assets/css/components.css',
-  '/assets/js/app.js',
-  '/assets/js/mapManager.js',
-  '/assets/js/dataManager.js',
-  '/assets/js/routeManager.js',
-  '/assets/js/utils.js',
-  '/assets/data/clients.json',
-  '/assets/data/routes.json',
-  '/assets/data/clusters.json',
-  '/assets/icons/icon-192x192.png',
-  '/assets/icons/icon-512x512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './assets/css/main.css',
+  './assets/css/mobile.css',
+  './assets/css/components.css',
+  './assets/css/animations.css',
+  './assets/css/navigationUI.css',
+  './assets/js/app.js',
+  './assets/js/mapManager.js',
+  './assets/js/dataManager.js',
+  './assets/js/routeManager.js',
+  './assets/js/utils.js',
+  './assets/js/googleMapsIntegration.js',
+  './assets/js/navigationUI.js',
+  './assets/data/clients.json',
+  './assets/data/routes.json',
+  './assets/data/clusters.json'
 ];
 
 // Essential Google Maps scripts and tiles to cache
@@ -251,8 +253,8 @@ self.addEventListener('push', event => {
   
   const options = {
     body: event.data?.text() || 'עדכון חדש במערכת המסלולים',
-    icon: '/assets/icons/icon-192x192.png',
-    badge: '/assets/icons/badge-72x72.png',
+    icon: './assets/icons/icon-192x192.png',
+    badge: './assets/icons/badge-72x72.png',
     vibrate: [200, 100, 200],
     tag: 'route-update',
     requireInteraction: true,

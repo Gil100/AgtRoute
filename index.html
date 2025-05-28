@@ -329,23 +329,89 @@
     <script src="assets/js/navigationUI.js"></script>
     <script src="assets/js/app.js"></script>
     
-    <!-- Google Maps API -->
-    <script async defer 
-            src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,places&callback=initApp">
+    <!-- Google Maps API - Dynamic Loading -->
+    <script>
+        // Load Google Maps API dynamically with proper error handling
+        function loadGoogleMapsAPI() {
+            return new Promise((resolve, reject) => {
+                if (window.google && window.google.maps) {
+                    resolve();
+                    return;
+                }
+                
+                const config = window.GOOGLE_MAPS_CONFIG || {
+                    apiKey: 'AIzaSyBI0FlEj7JPf1ectus8HUL7BwlC1rouv1E',
+                    libraries: ['geometry', 'places'],
+                    language: 'he',
+                    region: 'IL'
+                };
+                
+                const script = document.createElement('script');
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${config.apiKey}&libraries=${config.libraries.join(',')}&language=${config.language}&region=${config.region}&callback=initGoogleMaps`;
+                script.async = true;
+                script.defer = true;
+                
+                window.initGoogleMaps = () => {
+                    delete window.initGoogleMaps;
+                    resolve();
+                };
+                
+                script.onerror = () => {
+                    console.error('❌ Failed to load Google Maps API');
+                    reject(new Error('Google Maps API failed to load'));
+                };
+                
+                document.head.appendChild(script);
+            });
+        }
+        
+        // Initialize app after Google Maps is loaded
+        async function initApp() {
+            try {
+                await loadGoogleMapsAPI();
+                console.log('✅ Google Maps API loaded successfully');
+                
+                // Initialize AgtRoute app
+                if (window.agtRouteApp) {
+                    console.log('✅ AgtRoute app ready');
+                } else {
+                    console.log('🔄 Waiting for AgtRoute app initialization...');
+                }
+            } catch (error) {
+                console.error('❌ App initialization failed:', error);
+                document.querySelector('#loadingScreen p').textContent = 'שגיאה בטעינת המפות - בדוק חיבור לאינטרנט';
+            }
+        }
     </script>
 
     <!-- Service Worker Registration -->
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(registration => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(registrationError => {
-                        console.log('SW registration failed: ', registrationError);
+        if ('serviceWorker' in navigator && window.location.protocol === 'https:' || window.location.hostname === 'localhost') {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('./sw.js', {
+                        scope: './',
+                        updateViaCache: 'none'
                     });
+                    console.log('✅ Service Worker registered:', registration.scope);
+                    
+                    // Handle updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('🔄 New content available, will update on next visit');
+                            }
+                        });
+                    });
+                    
+                } catch (error) {
+                    console.warn('⚠️ Service Worker registration failed:', error);
+                    // App should still work without service worker
+                }
             });
+        } else {
+            console.log('ℹ️ Service Worker not supported or not on HTTPS');
         }
     </script>
 

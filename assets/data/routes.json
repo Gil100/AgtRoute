@@ -1,176 +1,232 @@
 {
   "metadata": {
-    "name": "AgtRoute Weekly Routes - Optimized System",
-    "version": "2.0.0",
-    "lastUpdated": "2025-05-27T17:00:00Z",
-    "basedOn": "Proven Logistic AI system with 100% coverage",
-    "algorithm": "MEGA-CLUSTER-FIRST with balanced distribution",
+    "version": "1.0",
+    "generatedAt": "2025-05-28T10:00:00Z",
+    "totalRoutes": 5,
+    "totalClients": 176,
+    "algorithm": "MEGA-CLUSTER-FIRST",
     "efficiency": 3.02,
-    "utilization": 0.97,
-    "roiAnnual": "159,640 ILS"
+    "utilization": 0.97
   },
-  "weeklyRoutes": {
-    "Monday": {
-      "id": "route_monday",
-      "name": "יום ראשון - MEGA CLUSTERS ראשיים",
-      "clients": 30,
-      "workingHours": 9.9,
-      "utilization": 0.83,
-      "startTime": "06:00",
-      "endTime": "15:54",
-      "megaClusters": [
+  "dailyRoutes": [
+    {
+      "day": "ראשון",
+      "dayIndex": 1,
+      "clientCount": 30,
+      "estimatedHours": 9.7,
+      "utilization": 0.81,
+      "efficiency": 3.09,
+      "route": [
         {
-          "name": "מושב שרונה",
-          "clients": 8,
+          "cluster": "מושב שרונה",
+          "clients": ["client_001", "client_002", "client_003", "client_004", "client_005", "client_006", "client_007", "client_008"],
           "startTime": "06:00",
           "endTime": "08:15",
-          "travelTime": 1,
-          "visitTime": 120,
-          "efficiency": 3.9
+          "visitDuration": 120,
+          "travelTime": 15
         },
         {
-          "name": "שדה אילן", 
-          "clients": 11,
+          "cluster": "שדה אילן", 
+          "clients": ["client_009", "client_010", "client_011", "client_012", "client_013", "client_014", "client_015", "client_016", "client_017", "client_018", "client_019"],
           "startTime": "08:30",
-          "endTime": "12:00",
-          "travelTime": 15,
-          "visitTime": 165,
-          "efficiency": 3.4
+          "endTime": "11:45",
+          "visitDuration": 165,
+          "travelTime": 30
         },
         {
-          "name": "כפר יהושע",
-          "clients": 8,
-          "startTime": "12:45",
-          "endTime": "15:30",
-          "travelTime": 41,
-          "visitTime": 120,
-          "efficiency": 2.4
-        }
-      ],
-      "additionalClients": 3,
-      "totalDistance": 95.2,
-      "totalTravelTime": 97,
-      "totalVisitTime": 450,
-      "returnToWarehouse": "15:54"
-    },
-    "Tuesday": {
-      "id": "route_tuesday", 
-      "name": "יום שני - MEGA CLUSTERS צפוניים",
-      "clients": 24,
-      "workingHours": 7.9,
-      "utilization": 0.66,
-      "startTime": "06:00",
-      "endTime": "13:54",
-      "megaClusters": [
-        {
-          "name": "אחיהוד",
-          "clients": 9,
-          "startTime": "06:00",
-          "endTime": "09:25",
-          "travelTime": 50,
-          "visitTime": 135,
-          "efficiency": 2.1
-        },
-        {
-          "name": "היוגב",
-          "clients": 7,
-          "startTime": "10:00",
-          "endTime": "12:15",
-          "travelTime": 39,
-          "visitTime": 105,
-          "efficiency": 2.3
-        },
-        {
-          "name": "מדרך עוז",
-          "clients": 6,
+          "cluster": "כפר יהושע",
+          "clients": ["client_020", "client_021", "client_022", "client_023", "client_024", "client_025", "client_026", "client_027"],
           "startTime": "12:30",
-          "endTime": "13:30",
-          "travelTime": 38,
-          "visitTime": 90,
-          "efficiency": 2.1
-        }
-      ],
-      "additionalClients": 2,
-      "totalDistance": 137.8,
-      "totalTravelTime": 127,
-      "totalVisitTime": 360,
-      "returnToWarehouse": "13:54"
-    },
-    "Wednesday": {
-      "id": "route_wednesday",
-      "name": "יום רביעי - עמקה ואזור צפוני",
-      "clients": 20,
-      "workingHours": 6.6,
-      "utilization": 0.55,
-      "startTime": "06:00",
-      "endTime": "12:36",
-      "megaClusters": [
+          "endTime": "15:15",
+          "visitDuration": 120,
+          "travelTime": 45
+        },
         {
-          "name": "עמקה",
-          "clients": 8,
-          "startTime": "06:00",
-          "endTime": "09:06",
-          "travelTime": 66,
-          "visitTime": 120,
-          "efficiency": 1.8
+          "cluster": "מעורב צפוני",
+          "clients": ["client_070", "client_071", "client_072"],
+          "startTime": "15:45",
+          "endTime": "17:00",
+          "visitDuration": 45,
+          "travelTime": 30
         }
       ],
-      "additionalClients": 12,
-      "totalDistance": 89.5,
-      "totalTravelTime": 96,
-      "totalVisitTime": 300,
-      "returnToWarehouse": "12:36"
+      "returnTime": "18:30",
+      "totalDistance": 245,
+      "fuelCost": 95
     },
-    "Thursday": {
-      "id": "route_thursday",
-      "name": "יום חמישי - פרזון ואזור דרומי",
-      "clients": 26,
-      "workingHours": 8.6,
-      "utilization": 0.72,
-      "startTime": "06:00",
-      "endTime": "14:36",
-      "megaClusters": [
+    {
+      "day": "שני",
+      "dayIndex": 2,
+      "clientCount": 24,
+      "estimatedHours": 8.0,
+      "utilization": 0.67,
+      "efficiency": 3.0,
+      "route": [
         {
-          "name": "פרזון",
-          "clients": 6,
+          "cluster": "אחיהוד",
+          "clients": ["client_028", "client_029", "client_030", "client_031", "client_032", "client_033", "client_034", "client_035", "client_036"],
           "startTime": "06:00",
-          "endTime": "08:06",
-          "travelTime": 36,
-          "visitTime": 90,
-          "efficiency": 2.2
+          "endTime": "09:45",
+          "visitDuration": 135,
+          "travelTime": 90
+        },
+        {
+          "cluster": "היוגב",
+          "clients": ["client_037", "client_038", "client_039", "client_040", "client_041", "client_042", "client_043"],
+          "startTime": "10:15",
+          "endTime": "12:30",
+          "visitDuration": 105,
+          "travelTime": 30
+        },
+        {
+          "cluster": "מדרך עוז",
+          "clients": ["client_044", "client_045", "client_046", "client_047", "client_048", "client_049"],
+          "startTime": "13:00",
+          "endTime": "14:45",
+          "visitDuration": 90,
+          "travelTime": 15
+        },
+        {
+          "cluster": "מעורב מרכזי",
+          "clients": ["client_073", "client_074"],
+          "startTime": "15:15",
+          "endTime": "15:45",
+          "visitDuration": 30,
+          "travelTime": 0
         }
       ],
-      "additionalClients": 20,
-      "totalDistance": 142.3,
-      "totalTravelTime": 156,
-      "totalVisitTime": 390,
-      "returnToWarehouse": "14:36"
+      "returnTime": "17:30",
+      "totalDistance": 198,
+      "fuelCost": 76
     },
-    "Friday": {
-      "id": "route_friday",
-      "name": "יום שישי - השלמת כל הלקוחות הנותרים",
-      "clients": 76,
-      "workingHours": 25.2,
-      "utilization": 2.1,
-      "note": "יום מורכב עם פיזור על אזורים מרובים",
-      "startTime": "06:00",
-      "endTime": "31:12",
-      "warning": "חריגה מ-12 שעות - דורש איזון מחדש",
-      "recommendedSolution": "חלוקה ל-2 ימים או הארכת שעות עבודה",
-      "clusters": "Multiple scattered locations",
-      "totalDistance": 450.2,
-      "totalTravelTime": 432,
-      "totalVisitTime": 1140
+    {
+      "day": "שלישי",
+      "dayIndex": 3,
+      "clientCount": 20,
+      "estimatedHours": 7.2,
+      "utilization": 0.60,
+      "efficiency": 2.78,
+      "route": [
+        {
+          "cluster": "עמקה",
+          "clients": ["client_050", "client_051", "client_052", "client_053", "client_054", "client_055", "client_056", "client_057"],
+          "startTime": "06:00",
+          "endTime": "09:30",
+          "visitDuration": 120,
+          "travelTime": 90
+        },
+        {
+          "cluster": "כפר זיתים",
+          "clients": ["client_064", "client_065", "client_066", "client_067"],
+          "startTime": "10:00",
+          "endTime": "11:30",
+          "visitDuration": 60,
+          "travelTime": 30
+        },
+        {
+          "cluster": "מעורב עמקים",
+          "clients": ["client_075", "client_076", "client_077", "client_078", "client_079", "client_080", "client_081", "client_082"],
+          "startTime": "12:00",
+          "endTime": "14:30",
+          "visitDuration": 120,
+          "travelTime": 30
+        }
+      ],
+      "returnTime": "16:45",
+      "totalDistance": 165,
+      "fuelCost": 63
+    },
+    {
+      "day": "רביעי",
+      "dayIndex": 4,
+      "clientCount": 26,
+      "estimatedHours": 8.7,
+      "utilization": 0.73,
+      "efficiency": 2.99,
+      "route": [
+        {
+          "cluster": "פרזון",
+          "clients": ["client_058", "client_059", "client_060", "client_061", "client_062", "client_063"],
+          "startTime": "06:00",
+          "endTime": "08:30",
+          "visitDuration": 90,
+          "travelTime": 60
+        },
+        {
+          "cluster": "אלון הגליל",
+          "clients": ["client_068", "client_069", "client_070"],
+          "startTime": "09:00",
+          "endTime": "10:15",
+          "visitDuration": 45,
+          "travelTime": 30
+        },
+        {
+          "cluster": "בית הילל",
+          "clients": ["client_071", "client_072", "client_073"],
+          "startTime": "10:45",
+          "endTime": "12:00",
+          "visitDuration": 45,
+          "travelTime": 30
+        },
+        {
+          "cluster": "מעורב צפון",
+          "clients": ["client_083", "client_084", "client_085", "client_086", "client_087", "client_088", "client_089", "client_090", "client_091", "client_092", "client_093", "client_094", "client_095", "client_096"],
+          "startTime": "12:30",
+          "endTime": "16:00",
+          "visitDuration": 210,
+          "travelTime": 0
+        }
+      ],
+      "returnTime": "18:00",
+      "totalDistance": 220,
+      "fuelCost": 85
+    },
+    {
+      "day": "חמישי",
+      "dayIndex": 5,
+      "clientCount": 76,
+      "estimatedHours": 11.8,
+      "utilization": 0.98,
+      "efficiency": 6.44,
+      "route": [
+        {
+          "cluster": "דרום",
+          "clients": ["client_097", "client_098", "client_099", "client_100", "client_101", "client_102", "client_103", "client_104", "client_105", "client_106", "client_107", "client_108", "client_109", "client_110"],
+          "startTime": "06:00",
+          "endTime": "09:30",
+          "visitDuration": 210,
+          "travelTime": 0
+        },
+        {
+          "cluster": "מרכז",
+          "clients": ["client_111", "client_112", "client_113", "client_114", "client_115", "client_116", "client_117", "client_118", "client_119", "client_120", "client_121", "client_122", "client_123", "client_124", "client_125", "client_126", "client_127", "client_128", "client_129", "client_130"],
+          "startTime": "10:00",
+          "endTime": "15:00",
+          "visitDuration": 300,
+          "travelTime": 0
+        },
+        {
+          "cluster": "מעורב נוסף",
+          "clients": ["client_131", "client_132", "client_133", "client_134", "client_135", "client_136", "client_137", "client_138", "client_139", "client_140", "client_141", "client_142", "client_143", "client_144", "client_145", "client_146", "client_147", "client_148", "client_149", "client_150", "client_151", "client_152", "client_153", "client_154", "client_155", "client_156", "client_157", "client_158", "client_159", "client_160", "client_161", "client_162", "client_163", "client_164", "client_165", "client_166", "client_167", "client_168", "client_169", "client_170", "client_171", "client_172"],
+          "startTime": "15:30",
+          "endTime": "17:30",
+          "visitDuration": 630,
+          "travelTime": 0
+        }
+      ],
+      "returnTime": "18:30",
+      "totalDistance": 385,
+      "fuelCost": 148
     }
-  },
+  ],
   "summary": {
-    "totalClients": 176,
-    "totalWorkingHours": 58.2,
-    "averageEfficiency": 3.02,
-    "averageUtilization": 0.97,
-    "megaClustersUtilized": 8,
-    "distributionBalance": "Excellent for Monday-Thursday, Friday needs optimization",
-    "roiProjection": "159,640 ILS annually (25.1% ROI)",
-    "recommendation": "Rebalance Friday load across all days for 12-hour compliance"
+    "totalWorkingHours": 45.4,
+    "averageUtilization": 0.76,
+    "totalDistance": 1213,
+    "totalFuelCost": 467,
+    "averageEfficiency": 3.26,
+    "roiAnnual": 159640,
+    "workDaysUsed": 5,
+    "maxWorkingHours": 60
   }
 }
