@@ -340,20 +340,20 @@
                     return;
                 }
                 
-                const config = window.GOOGLE_MAPS_CONFIG || {
-                    apiKey: 'AIzaSyDemo_Key_Replace_With_Real_Key',
-                    libraries: ['geometry', 'places'],
-                    language: 'he',
-                    region: 'IL'
-                };
+                // Use the API key from config.js
+                const apiKey = window.GOOGLE_MAPS_API_KEY || 'AIzaSyDemo_Key_Replace_With_Real_Key';
+                const libraries = ['geometry', 'places'];
+                const language = 'he';
+                const region = 'IL';
                 
                 const script = document.createElement('script');
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${config.apiKey}&libraries=${config.libraries.join(',')}&language=${config.language}&region=${config.region}&callback=initGoogleMaps`;
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=${libraries.join(',')}&language=${language}&region=${region}&callback=initGoogleMapsCallback`;
                 script.async = true;
                 script.defer = true;
                 
-                window.initGoogleMaps = () => {
-                    delete window.initGoogleMaps;
+                window.initGoogleMapsCallback = () => {
+                    delete window.initGoogleMapsCallback;
+                    console.log('✅ Google Maps API loaded successfully');
                     resolve();
                 };
                 
@@ -364,24 +364,6 @@
                 
                 document.head.appendChild(script);
             });
-        }
-        
-        // Initialize app after Google Maps is loaded
-        async function initApp() {
-            try {
-                await loadGoogleMapsAPI();
-                console.log('✅ Google Maps API loaded successfully');
-                
-                // Initialize AgtRoute app
-                if (window.agtRouteApp) {
-                    console.log('✅ AgtRoute app ready');
-                } else {
-                    console.log('🔄 Waiting for AgtRoute app initialization...');
-                }
-            } catch (error) {
-                console.error('❌ App initialization failed:', error);
-                document.querySelector('#loadingScreen p').textContent = 'שגיאה בטעינת המפות - בדוק חיבור לאינטרנט';
-            }
         }
     </script>
 

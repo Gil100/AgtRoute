@@ -66,16 +66,14 @@ class MapManager {
       
       // Create loading promise
       window.googleMapsLoading = new Promise((res, rej) => {
-        // Get API key from config
-        const config = window.GOOGLE_MAPS_CONFIG || {
-          apiKey: 'AIzaSyBI0FlEj7JPf1ectus8HUL7BwlC1rouv1E',
-          libraries: ['geometry', 'places'],
-          language: 'he',
-          region: 'IL'
-        };
+        // Get API key from config.js
+        const apiKey = window.GOOGLE_MAPS_API_KEY || 'AIzaSyBI0FlEj7JPf1ectus8HUL7BwlC1rouv1E';
+        const libraries = ['geometry', 'places'];
+        const language = 'he';
+        const region = 'IL';
         
         // Validate API key
-        if (!config.apiKey || config.apiKey.includes('Dummy')) {
+        if (!apiKey || apiKey.includes('Dummy')) {
           console.error('❌ Invalid Google Maps API key');
           rej(new Error('Invalid or missing Google Maps API key'));
           return;
@@ -90,7 +88,7 @@ class MapManager {
         };
         
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${config.apiKey}&libraries=${config.libraries.join(',')}&language=${config.language}&region=${config.region}&callback=initGoogleMapsCallback`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=${libraries.join(',')}&language=${language}&region=${region}&callback=initGoogleMapsCallback`;
         script.async = true;
         script.defer = true;
         

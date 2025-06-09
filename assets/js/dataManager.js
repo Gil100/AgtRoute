@@ -193,13 +193,22 @@ class DataManager {
       return;
     }
     
-    this.routes = this.routes.map((route, index) => ({
-      ...route,
-      id: route.id || `route-${index}`,
-      totalDistance: this.calculateRouteDistance(route),
-      totalTime: this.calculateRouteTime(route),
-      efficiency: this.calculateRouteEfficiency(route)
-    }));
+    this.routes = this.routes.map((route, index) => {
+      // For routes without client arrays, use the client count
+      const processedRoute = {
+        ...route,
+        id: route.id || `route-${index}`,
+        clientCount: route.clients || 0, // Store the count
+        clients: route.clients && Array.isArray(route.clients) ? route.clients : [] // Ensure clients is an array
+      };
+      
+      // Only calculate if we have a client array
+      processedRoute.totalDistance = this.calculateRouteDistance(processedRoute);
+      processedRoute.totalTime = this.calculateRouteTime(processedRoute);
+      processedRoute.efficiency = route.efficiency || this.calculateRouteEfficiency(processedRoute);
+      
+      return processedRoute;
+    });
   }
   
   /**
@@ -858,18 +867,26 @@ class DataManager {
    * Calculate route distance
    */
   calculateRouteDistance(route) {
-    return route.clients?.reduce((total, client) => 
+    // Ensure clients is an array before using reduce
+    if (!route.clients || !Array.isArray(route.clients)) {
+      return 0;
+    }
+    return route.clients.reduce((total, client) => 
       total + (parseFloat(client.distance) || 0), 0
-    ) || 0;
+    );
   }
   
   /**
    * Calculate route time
    */
   calculateRouteTime(route) {
-    return route.clients?.reduce((total, client) => 
+    // Ensure clients is an array before using reduce
+    if (!route.clients || !Array.isArray(route.clients)) {
+      return 0;
+    }
+    return route.clients.reduce((total, client) => 
       total + (client.visitTime || 15), 0
-    ) || 0;
+    );
   }
   
   /**
@@ -877,7 +894,7 @@ class DataManager {
    */
   calculateRouteEfficiency(route) {
     const time = this.calculateRouteTime(route);
-    const clientCount = route.clients?.length || 0;
+    const clientCount = route.clients && Array.isArray(route.clients) ? route.clients.length : 0;
     return time > 0 ? (clientCount / (time / 60)).toFixed(1) : 0;
   }
   
