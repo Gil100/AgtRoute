@@ -1,65 +1,62 @@
 {
-  "name": "AgtRoute - ניהול מסלולי חלוקה",
+  "name": "AgtRoute - מערכת מסלולי חלוקה",
   "short_name": "AgtRoute",
-  "description": "מערכת ניהול מסלולי חלוקה שבועית מתקדמת עם אופטימיזציה ומפות אינטראקטיביות",
-  "start_url": "/",
+  "description": "מערכת לוגיסטיקה מתקדמת לניהול מסלולי חלוקה שבועית",
+  "version": "1.0.0",
+  "start_url": "/AgtRoute/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2196F3",
   "orientation": "portrait-primary",
-  "scope": "/",
-  "lang": "he",
+  "theme_color": "#2196F3",
+  "background_color": "#ffffff",
   "dir": "rtl",
-  "categories": ["business", "logistics", "productivity"],
+  "lang": "he",
+  "scope": "/AgtRoute/",
   "icons": [
     {
-      "src": "assets/icons/icon-144x144.png.svg",
-      "sizes": "144x144",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-192x192.png.svg",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMyMTk2RjMiLz4KPHBhdGggZD0iTTk2IDQ4QzgyLjc0NTIgNDggNzIgNTguNzQ1MiA3MiA3MkM3MiA4NS4yNTQ4IDgyLjc0NTIgOTYgOTYgOTZDMTA5LjI1NSA5NiAxMjAgODUuMjU0OCAxMjAgNzJDMTIwIDU4Ljc0NTIgMTA5LjI1NSA0OCA5NiA0OFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik05NiAxMDRMMTQ0IDE0NEg0OEw5NiAxMDRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K",
       "sizes": "192x192",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
+      "type": "image/svg+xml"
     },
     {
-      "src": "assets/icons/icon-512x512.png.svg",
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMyMTk2RjMiLz4KPHBhdGggZD0iTTI1NiAxMjhDMjIwLjY1NCAxMjggMTkyIDE1Ni42NTQgMTkyIDIxNkMxOTIgMjI3LjU0NiAyMjAuNjU0IDI1NiAyNTYgMjU2QzI5MS4zNDYgMjU2IDMyMCAyMjcuNTQ2IDMyMCAyMTZDMzIwIDE1Ni42NTQgMjkxLjM0NiAxMjggMjU2IDEyOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNTYgMjc2TDM4NCAzODRIMTI4TDI1NiAyNzZaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "maskable any"
+      "type": "image/svg+xml"
     }
   ],
   "shortcuts": [
     {
-      "name": "מפת יום ראשון",
-      "short_name": "יום א'",
-      "description": "פתח ישירות למסלול יום ראשון",
-      "url": "/?day=1",
+      "name": "מפה יומית",
+      "short_name": "מפה",
+      "description": "הצג מפה עם לקוחות יומיים",
+      "url": "/AgtRoute/?view=map",
       "icons": [
         {
-          "src": "assets/icons/shortcut-day1.png",
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTIiIGZpbGw9IiM0Q0FGNTBCRI+CjxwYXRoIGQ9Ik00OCAyNEM0MC4yNjggMjQgMzQgMzAuMjY4IDM0IDM4QzM0IDQ1LjczMiA0MC4yNjggNTIgNDggNTJDNTUuNzMyIDUyIDYyIDQ1LjczMiA2MiAzOEM2MiAzMC4yNjggNTUuNzMyIDI0IDQ4IDI0WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTQ4IDU2TDcyIDcySDI0TDQ4IDU2WiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==",
           "sizes": "96x96"
         }
       ]
     },
     {
-      "name": "התקדמות שבועית",
-      "short_name": "התקדמות",
-      "description": "צפה בהתקדמות השבועית",
-      "url": "/?view=progress",
+      "name": "רשימת לקוחות",
+      "short_name": "לקוחות",
+      "description": "הצג רשימת לקוחות מפורטת",
+      "url": "/AgtRoute/?view=clients",
       "icons": [
         {
-          "src": "assets/icons/shortcut-progress.png",
+          "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTYiIGhlaWdodD0iOTYiIHZpZXdCb3g9IjAgMCA5NiA5NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9Ijk2IiBoZWlnaHQ9Ijk2IiByeD0iMTIiIGZpbGw9IiNGRjk4MDAiLz4KPHJlY3QgeD0iMjAiIHk9IjIwIiB3aWR0aD0iNTYiIGhlaWdodD0iOCIgcng9IjQiIGZpbGw9IndoaXRlIi8+CjxyZWN0IHg9IjIwIiB5PSIzNiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSJ3aGl0ZSIvPgo8cmVjdCB4PSIyMCIgeT0iNTIiIHdpZHRoPSI0OCIgaGVpZ2h0PSI4IiByeD0iNCIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeD0iMjAiIHk9IjY4IiB3aWR0aD0iMzIiIGhlaWdodD0iOCIgcng9IjQiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=",
           "sizes": "96x96"
         }
       ]
     }
   ],
-  "related_applications": [],
-  "prefer_related_applications": false,
-  "edge_side_panel": {
-    "preferred_width": 400
-  }
+  "categories": ["productivity", "business", "navigation"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIwIiBoZWlnaHQ9IjU2OCIgdmlld0JveD0iMCAwIDMyMCA1NjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iNTY4IiBmaWxsPSIjRjVGNUY1Ii8+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iNjQiIGZpbGw9IiMyMTk2RjMiLz4KPHRleHQgeD0iMTYwIiB5PSI0MCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+QWd0Um91dGU8L3RleHQ+Cjwvc3ZnPgo=",
+      "sizes": "320x568",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    }
+  ],
+  "prefer_related_applications": false
 }

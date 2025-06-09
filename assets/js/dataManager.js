@@ -87,7 +87,7 @@ class DataManager {
         this.clients = [];
       }
       
-      // Validate routes data
+      // Validate routes data with fallback
       if (routeData?.dailyRoutes && Array.isArray(routeData.dailyRoutes)) {
         this.routes = routeData.dailyRoutes;
         console.log('✅ Route data loaded from structured format');
@@ -95,8 +95,8 @@ class DataManager {
         this.routes = routeData;
         console.log('✅ Route data loaded from array format');
       } else {
-        console.warn('⚠️ No valid route data, using empty array');
-        this.routes = [];
+        console.warn('⚠️ No valid route data, using fallback data');
+        this.routes = this.getFallbackRoutes();
       }
       
       // Validate clusters data
@@ -1262,6 +1262,34 @@ class DataManager {
         url: window.location.href
       });
     }
+  }
+
+  /**
+   * Get fallback routes data
+   */
+  getFallbackRoutes() {
+    return [
+      {
+        id: 'route-1',
+        day: 1,
+        name: 'יום ראשון',
+        clients: 30,
+        estimatedHours: 11.5,
+        efficiency: 2.6,
+        startTime: '06:00',
+        status: 'planned'
+      },
+      {
+        id: 'route-2',
+        day: 2,
+        name: 'יום שני',
+        clients: 24,
+        estimatedHours: 10.2,
+        efficiency: 2.4,
+        startTime: '06:00',
+        status: 'planned'
+      }
+    ];
   }
 }
 
